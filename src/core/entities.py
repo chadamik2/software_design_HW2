@@ -21,6 +21,14 @@ class BankAccount:
     name: str
     balance: float = 0.0
 
+    def apply(self, op: "Operation"):
+        if op.bank_account_id != self.id:
+            raise ValueError("Operation belongs to another account")
+        if op.type == OperationType.INCOME:
+            self.balance += op.amount
+        else:
+            self.balance -= op.amount
+
 
 @dataclass(frozen=True)
 class Category:
