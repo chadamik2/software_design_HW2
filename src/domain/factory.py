@@ -8,11 +8,11 @@ from ..domain.exceptions import ValidationError
 
 class DomainFactory:
     @staticmethod
-    def _gen_id(self) -> str:
+    def _gen_id() -> str:
         return str(uuid.uuid4())
 
     @staticmethod
-    def _parse_date(self, value: Union[str, date, datetime]) -> date:
+    def _parse_date(value: Union[str, date, datetime]) -> date:
         if isinstance(value, date) and not isinstance(value, datetime):
             return value
         if isinstance(value, datetime):
