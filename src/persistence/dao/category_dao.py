@@ -4,7 +4,7 @@ from src.domain.entities import Category, CategoryType
 from ..sqlite_db import SQLiteDB
 
 
-class BankAccountDAO:
+class CategoryDAO:
     def __init__(self, db: SQLiteDB):
         self.db = db
 

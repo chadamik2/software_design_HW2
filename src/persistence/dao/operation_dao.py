@@ -5,7 +5,7 @@ from src.domain.entities import Operation, OperationType
 from ..sqlite_db import SQLiteDB
 
 
-class BankAccountDAO:
+class OperationDAO:
     def __init__(self, db: SQLiteDB):
         self.db = db
 
