@@ -34,17 +34,17 @@ class DataImporter:
         for a in payload.get("bank_accounts", []):
             existing = self.accounts.get(a.get("id"))
             if existing is None:
-                self.accounts.create(a["name"], float(a.get("balance", 0.0)), id=a.get("id"))
+                self.accounts.create(a["name"], float(a.get("balance", 0.0)), id_=a.get("id"))
 
         for c in payload.get("categories", []):
             existing = self.cats.get(c.get("id"))
             if existing is None:
-                self.cats.create(type=c.get("type"), name=c["name"], id=c.get("id"))
+                self.cats.create(type_=c.get("type"), name=c["name"], id=c.get("id"))
 
         for o in payload.get("operations", []):
             existing = self.ops.get(o.get("id"))
             if existing is None:
-                self.ops.create(id=o.get("id"), type=o.get("type"),
+                self.ops.create(id_=o.get("id"), type_=o.get("type"),
                                 bank_account_id=o["bank_account_id"],
                                 amount=float(o["amount"]), date_value=o["date"],
                                 description=o.get("description"), category_id=o["category_id"])

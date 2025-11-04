@@ -1,6 +1,6 @@
 from src.commands.base_command import Command
 from src.commands.input_processing import ask, ask_float, ask_opt
-from src.domain.entities import CategoryType, Operation, OperationType
+from src.domain.entities import CategoryType, OperationType
 from src.services.bank_account_facade import BankAccountFacade
 from src.services.category_facade import CategoryFacade
 from src.services.operation_facade import OperationFacade

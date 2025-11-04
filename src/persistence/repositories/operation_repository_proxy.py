@@ -1,4 +1,3 @@
-from abc import ABC
 from typing import List, Dict, Optional
 
 from src.persistence.repositories.abstract_repository import Repository
@@ -19,12 +18,12 @@ class OperationRepositoryProxy(Repository):
         self.dao.update(obj)
         self._cache[obj.id] = obj
 
-    def delete(self, id: str) -> None:
-        self.dao.delete(id)
-        self._cache.pop(id, None)
+    def delete(self, id_: str) -> None:
+        self.dao.delete(id_)
+        self._cache.pop(id_, None)
 
-    def get(self, id: str) -> Optional[Operation]:
-        return self._cache.get(id, None)
+    def get(self, id_: str) -> Optional[Operation]:
+        return self._cache.get(id_, None)
 
     def list_all(self) -> List[Operation]:
         return list(self._cache.values())

@@ -1,5 +1,6 @@
 import json
 from typing import Any, Dict, List
+from abc import ABC, abstractmethod
 
 try:
     import yaml
@@ -28,7 +29,12 @@ class DataExportVisitor:
         }
 
 
-class JsonExporter:
+class Exporter(ABC):
+    @abstractmethod
+    def export(self, path: str, accounts: List[BankAccount], cats: List[Category], ops: List[Operation]) -> None: ...
+
+
+class JsonExporter(Exporter):
     def export(self, path: str, accounts: List[BankAccount], cats: List[Category], ops: List[Operation]) -> None:
         v = DataExportVisitor()
         payload = {
@@ -41,7 +47,7 @@ class JsonExporter:
             json.dump(payload, f, ensure_ascii=False, indent=2)
 
 
-class YamlExporter:
+class YamlExporter(Exporter):
     def export(self, path: str, accounts: List[BankAccount], cats: List[Category], ops: List[Operation]) -> None:
         if yaml is None:
             raise RuntimeError("PyYAML is not installed")
@@ -56,7 +62,7 @@ class YamlExporter:
             yaml.safe_dump(payload, f, allow_unicode=True, sort_keys=False)
 
 
-def get_exporter(fmt: str):
+def get_exporter(fmt: str) -> Exporter:
     fmt = fmt.lower()
     if fmt == "json":
         return JsonExporter()

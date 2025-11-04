@@ -26,7 +26,7 @@ class TimedCommandDecorator(Command):
     def execute(self) -> Any:
         start = perf_counter()
         try:
-            res = self._inner.execute()
+            self._inner.execute()
         finally:
             duration = perf_counter() - start
             self._stats.add(self._inner.name, duration)

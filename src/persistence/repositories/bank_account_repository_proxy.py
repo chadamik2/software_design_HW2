@@ -18,12 +18,12 @@ class BankAccountRepositoryProxy(Repository[BankAccount]):
         self.dao.update(obj)
         self._cache[obj.id] = obj
 
-    def delete(self, id: str):
-        self.dao.delete(id)
-        self._cache.pop(id, None)
+    def delete(self, id_: str):
+        self.dao.delete(id_)
+        self._cache.pop(id_, None)
 
-    def get(self, id: str) -> Optional[BankAccount]:
-        obj = self._cache.get(id)
+    def get(self, id_: str) -> Optional[BankAccount]:
+        obj = self._cache.get(id_)
         return obj
 
     def list_all(self) -> List[BankAccount]:

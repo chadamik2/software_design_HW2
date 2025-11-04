@@ -1,5 +1,5 @@
 from typing import Optional, List
-from datetime import datetime, date
+from datetime import date
 
 from src.domain.entities import Operation, OperationType
 from ..sqlite_db import SQLiteDB
@@ -21,12 +21,12 @@ class OperationDAO:
             (op.type.value, op.bank_account_id, op.amount, op.date.isoformat(), op.description, op.category_id, op.id))
         self.db.conn.commit()
 
-    def delete(self, id: str) -> None:
-        self.db.conn.execute("DELETE FROM operations WHERE id = ?", id)
+    def delete(self, id_: str) -> None:
+        self.db.conn.execute("DELETE FROM operations WHERE id = ?", id_)
         self.db.conn.commit()
 
-    def get(self, id: str) -> Optional[Operation]:
-        cur = self.db.conn.execute("SELECT * FROM operations WHERE id = ?", id)
+    def get(self, id_: str) -> Optional[Operation]:
+        cur = self.db.conn.execute("SELECT * FROM operations WHERE id = ?", id_)
         r = cur.fetchone()
         if r is None:
             return None

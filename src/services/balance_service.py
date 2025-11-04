@@ -1,10 +1,9 @@
 from dataclasses import replace
 from typing import Optional
 
-from src.domain.exceptions import NotFoundError
 from src.persistence.repositories.bank_account_repository_proxy import BankAccountRepositoryProxy
 from src.persistence.repositories.operation_repository_proxy import OperationRepositoryProxy
-from src.domain.entities import OperationType, BankAccount
+from src.domain.entities import OperationType
 
 
 class BalanceService:

@@ -18,12 +18,12 @@ class CategoryDAO:
                              (category.type.value, category.name, category.id))
         self.db.conn.commit()
 
-    def delete(self, id: str) -> None:
-        self.db.conn.execute("DELETE FROM categories WHERE id = ?", id)
+    def delete(self, id_: str) -> None:
+        self.db.conn.execute("DELETE FROM categories WHERE id = ?", id_)
         self.db.conn.commit()
 
-    def get(self, id: str) -> Optional[Category]:
-        cur = self.db.conn.execute("SELECT * FROM categories WHERE id = ?", id)
+    def get(self, id_: str) -> Optional[Category]:
+        cur = self.db.conn.execute("SELECT * FROM categories WHERE id = ?", id_)
         r = cur.fetchone()
         if r is None:
             return None

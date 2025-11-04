@@ -1,5 +1,3 @@
-from typing import Optional
-
 from src.commands.input_processing import ask, ask_float
 from src.services.balance_service import BalanceService
 from src.commands.base_command import Command

@@ -1,4 +1,3 @@
-from typing import Optional
 from datetime import date
 
 from src.commands.base_command import Command

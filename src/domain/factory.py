@@ -21,30 +21,30 @@ class DomainFactory:
             return date.fromisoformat(value)
         raise ValidationError("Invalid date")
 
-    def create_bank_account(self, name: str, balance: float = 0.0, id: Optional[str] = None) -> BankAccount:
+    def create_bank_account(self, name: str, balance: float = 0.0, id_: Optional[str] = None) -> BankAccount:
         name = (name or "").strip()
         if not name:
             raise ValidationError("Name cannot be empty")
         if balance < 0:
             raise ValidationError("Balance cannot be negative")
-        return BankAccount(id=id or self._gen_id(), name=name, balance=balance)
+        return BankAccount(id=id_ or self._gen_id(), name=name, balance=balance)
 
-    def create_category(self, type: CategoryType, name: str, id: Optional[str] = None) -> Category:
+    def create_category(self, type_: CategoryType, name: str, id_: Optional[str] = None) -> Category:
         name = (name or "").strip()
         if not name:
             raise ValidationError("Name cannot be empty")
-        return Category(id=id or self._gen_id(), type=type, name=name)
+        return Category(id=id_ or self._gen_id(), type=type_, name=name)
 
-    def create_operation(self, type: OperationType, bank_account_id: str, amount: float,
+    def create_operation(self, type_: OperationType, bank_account_id: str, amount: float,
                          date_value: Union[str, date, datetime], description: Optional[str], category_id: str,
-                         id: Optional[str] = None) -> Operation:
+                         id_: Optional[str] = None) -> Operation:
         if amount < 0:
             raise ValidationError("Amount cannot be negative")
         dt = self._parse_date(date_value)
         description = (description or "").strip() or None
         return Operation(
-            id=id or self._gen_id(),
-            type=type,
+            id=id_ or self._gen_id(),
+            type=type_,
             bank_account_id=bank_account_id,
             amount=amount,
             date=dt,

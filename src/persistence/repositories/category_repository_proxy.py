@@ -18,12 +18,12 @@ class CategoryRepositoryProxy(Repository[Category]):
         self.dao.update(category)
         self._cache[category.id] = category
 
-    def delete(self, id: str) -> None:
-        self.dao.delete(id)
-        self._cache.pop(id, None)
+    def delete(self, id_: str) -> None:
+        self.dao.delete(id_)
+        self._cache.pop(id_, None)
 
-    def get(self, id: str) -> Optional[Category]:
-        return self._cache.get(id, None)
+    def get(self, id_: str) -> Optional[Category]:
+        return self._cache.get(id_, None)
 
     def list_all(self) -> List[Category]:
         return list(self._cache.values())

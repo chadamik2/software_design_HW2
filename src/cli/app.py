@@ -60,7 +60,7 @@ def run_cli_main() -> None:
     balance: BalanceService = c.resolve("balance")
     stats: StatsRegistry = c.resolve("stats")
 
-    MENU = """
+    menu = """
 [1] Создать счет
 [2] Список счетов
 [3] Создать категорию
@@ -82,7 +82,7 @@ def run_cli_main() -> None:
     while True:
         try:
             print("\n=== ВШЭ БАНК ===")
-            choice = input(MENU).strip()
+            choice = input(menu).strip()
             if choice == "0":
                 print("До свидания")
                 return

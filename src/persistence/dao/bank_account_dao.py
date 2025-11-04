@@ -18,12 +18,12 @@ class BankAccountDAO:
                              (account.name, account.balance, account.id))
         self.db.conn.commit()
 
-    def delete(self, id: str) -> None:
-        self.db.conn.execute("DELETE FROM bank_accounts WHERE id = ?", id)
+    def delete(self, id_: str) -> None:
+        self.db.conn.execute("DELETE FROM bank_accounts WHERE id = ?", id_)
         self.db.conn.commit()
 
-    def get(self, id: str) -> Optional[BankAccount]:
-        cur = self.db.conn.execute("SELECT * FROM bank_accounts WHERE id = ?", id)
+    def get(self, id_: str) -> Optional[BankAccount]:
+        cur = self.db.conn.execute("SELECT * FROM bank_accounts WHERE id = ?", id_)
         r = cur.fetchone()
         if r is None:
             return None
