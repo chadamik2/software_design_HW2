@@ -1,4 +1,4 @@
-from src.commands.command import Command
+from src.commands.base_command import Command
 from src.domain.entities import CategoryType, Operation, OperationType
 from src.services.bank_account_facade import BankAccountFacade
 from src.services.category_facade import CategoryFacade

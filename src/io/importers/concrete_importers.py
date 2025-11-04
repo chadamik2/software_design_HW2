@@ -28,3 +28,12 @@ class YamlImporter(DataImporter):
             "categories": list(obj.get("categories", [])),
             "operations": list(obj.get("operations", [])),
         }
+
+
+def get_importer(fmt: str, *args, **kwargs) -> DataImporter:
+    fmt = fmt.lower()
+    if fmt == "json":
+        return JsonImporter(*args, **kwargs)
+    if fmt == "yaml" or fmt == "yml":
+        return YamlImporter(*args, **kwargs)
+    raise ValueError("Неизвестный формат импорта")

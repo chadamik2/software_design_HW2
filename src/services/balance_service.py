@@ -25,9 +25,8 @@ class BalanceService:
             comp = computed.get(acc.id, 0)
             self.accounts.update(replace(acc, balance=comp))
 
-    def recalculate_one(self, acc: BankAccount, new_balance: Optional[float]) -> float:
-        if acc not in self.accounts.list_all():
-            raise NotFoundError("No such bank account")
+    def recalculate_one(self, acc_id: str, new_balance: Optional[float]) -> float:
+        acc = self.accounts.get(acc_id)
 
         if new_balance is None:
             new_balance = 0.0

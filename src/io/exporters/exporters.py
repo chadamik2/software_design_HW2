@@ -54,3 +54,12 @@ class YamlExporter:
 
         with open(path, "w", encoding="utf-8") as f:
             yaml.safe_dump(payload, f, allow_unicode=True, sort_keys=False)
+
+
+def get_exporter(fmt: str):
+    fmt = fmt.lower()
+    if fmt == "json":
+        return JsonExporter()
+    if fmt == "yaml" or fmt == "yml":
+        return YamlExporter()
+    raise ValueError("Неизвестный формат экспорта")
