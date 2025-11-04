@@ -29,12 +29,12 @@ class DataExportVisitor:
         }
 
 
-class Exporter(ABC):
+class DataExporter(ABC):
     @abstractmethod
     def export(self, path: str, accounts: List[BankAccount], cats: List[Category], ops: List[Operation]) -> None: ...
 
 
-class JsonExporter(Exporter):
+class JsonExporter(DataExporter):
     def export(self, path: str, accounts: List[BankAccount], cats: List[Category], ops: List[Operation]) -> None:
         v = DataExportVisitor()
         payload = {
@@ -47,7 +47,7 @@ class JsonExporter(Exporter):
             json.dump(payload, f, ensure_ascii=False, indent=2)
 
 
-class YamlExporter(Exporter):
+class YamlExporter(DataExporter):
     def export(self, path: str, accounts: List[BankAccount], cats: List[Category], ops: List[Operation]) -> None:
         if yaml is None:
             raise RuntimeError("PyYAML is not installed")
@@ -62,7 +62,7 @@ class YamlExporter(Exporter):
             yaml.safe_dump(payload, f, allow_unicode=True, sort_keys=False)
 
 
-def get_exporter(fmt: str) -> Exporter:
+def get_exporter(fmt: str) -> DataExporter:
     fmt = fmt.lower()
     if fmt == "json":
         return JsonExporter()
