@@ -1,5 +1,8 @@
+from src.cli.app import run_cli_main
+
+
 def main() -> None:
-    pass
+    run_cli_main()
 
 
 if __name__ == "__main__":

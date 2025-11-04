@@ -12,8 +12,8 @@ class BankAccountFacade:
         self.repo = repo
         self.factory = factory
 
-    def create(self, name: str, balance: float = 0.0) -> BankAccount:
-        acc = self.factory.create_bank_account(name, balance)
+    def create(self, name: str, balance: float = 0.0, id: Optional[str] = None) -> BankAccount:
+        acc = self.factory.create_bank_account(name, balance, id)
         self.repo.add(acc)
         return acc
 

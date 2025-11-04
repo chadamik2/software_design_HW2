@@ -12,8 +12,8 @@ class CategoryFacade:
         self.repo = repo
         self.factory = factory
 
-    def create(self, type: CategoryType, name: str) -> Category:
-        cat = self.factory.create_category(type=type, name=name)
+    def create(self, type: CategoryType, name: str, id: Optional[str] = None) -> Category:
+        cat = self.factory.create_category(type=type, name=name, id=id)
         self.repo.add(cat)
         return cat
 

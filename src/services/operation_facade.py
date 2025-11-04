@@ -45,11 +45,11 @@ class OperationFacade:
             raise ValidationError("The type of operation does not match the type of category")
 
     def create(self, type: OperationType, bank_account_id: str, amount: float, date_value, description: Optional[str],
-               category_id: str) -> Operation:
+               category_id: str, id: Optional[str] = None) -> Operation:
         self._check_category_and_account(bank_account_id, category_id, type)
         op = self.factory.create_operation(type=type, amount=amount, bank_account_id=bank_account_id,
                                            date_value=date_value, description=description,
-                                           category_id=category_id)
+                                           category_id=category_id, id=id)
         self.ops.add(op)
         self._apply_account_effect(account_id=bank_account_id, type=type, amount=amount)
         return op

@@ -30,5 +30,5 @@ class CategoryDAO:
         return Category(id=r["id"], type=CategoryType(r["type"]), name=r["name"])
 
     def list_all(self) -> List[Category]:
-        cur = self.db.conn.execute("SELECT * FROM bank_accounts")
+        cur = self.db.conn.execute("SELECT * FROM categories")
         return [Category(id=r["id"], type=CategoryType(r["type"]), name=r["name"]) for r in cur.fetchall()]

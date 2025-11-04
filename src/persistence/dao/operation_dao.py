@@ -35,7 +35,7 @@ class OperationDAO:
                          date=date.fromisoformat(r["date"]), description=r["description"], category_id=r["category_id"])
 
     def list_all(self) -> List[Operation]:
-        cur = self.db.conn.execute("SELECT * FROM bank_accounts")
+        cur = self.db.conn.execute("SELECT * FROM operations")
         return [Operation(id=r["id"], type=OperationType(r["type"]), bank_account_id=r["bank_account_id"],
                           amount=r["amount"],
                           date=date.fromisoformat(r["date"]), description=r["description"],

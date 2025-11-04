@@ -8,7 +8,7 @@ from src.domain.entities import OperationType, BankAccount
 
 
 class BalanceService:
-    def __init(self, ops: OperationRepositoryProxy, accounts: BankAccountRepositoryProxy):
+    def __init__(self, ops: OperationRepositoryProxy, accounts: BankAccountRepositoryProxy):
         self.ops = ops
         self.accounts = accounts
 

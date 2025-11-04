@@ -37,7 +37,7 @@ class DomainFactory:
 
     def create_operation(self, type: OperationType, bank_account_id: str, amount: float,
                          date_value: Union[str, date, datetime], description: Optional[str], category_id: str,
-                         id: Optional[str]) -> Operation:
+                         id: Optional[str] = None) -> Operation:
         if amount < 0:
             raise ValidationError("Amount cannot be negative")
         dt = self._parse_date(date_value)
